@@ -1,5 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
@@ -11,6 +12,8 @@ export default {
     "./resources/js/**/*.tsx",
   ],
 
+  darkMode: "class",
+
   theme: {
     extend: {
       fontFamily: {
@@ -19,5 +22,10 @@ export default {
     },
   },
 
-  plugins: [forms, daisyui],
+  daisyui: {
+    themes: ["cupcake", "dracula"],
+    darkTheme: "dracula",
+  },
+
+  plugins: [forms, typography, daisyui],
 };

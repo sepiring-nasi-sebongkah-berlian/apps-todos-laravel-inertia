@@ -25,6 +25,19 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/custom', function () {
+    return Inertia::render('Custom/Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('custom');
+
+Route::get("/custom/register", function () {
+    return Inertia::render("Custom/Auth/Register");
+})->name('custom.register');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -35,4 +48,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
